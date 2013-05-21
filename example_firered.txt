@@ -1,0 +1,165 @@
+setmain 1
+stats
+// rival
+T327 -ydef -1 -xatk -1
+
+// viridian forest
+T104//bug catcher sammy
+lm Bubble
+
+// brocks gym
+T142 // liam
+T414 // brock
+
+// route 3
+T105 // colton
+lm WaterGun
+um Tackle
+T106 // greg
+T107 // james
+// runner girl: T118 (robin)
+
+// mt.moon
+// spinner rocket: T354
+T351 // grunt with rattata & zubat
+evolve Wartortle
+T170 // miguel
+lm MegaKick
+lm MegaPunch
+um Bubble
+um Withdraw
+
+// cerulean
+T415// misty
+lm Bite
+um TailWhip
+lm WaterPulse
+um WaterGun
+T333 -v 2 -order 1,4,2,3 // terry with L18 bulbasaur (order 1423?)
+
+// nugget bridge
+T110 // cale
+T123 // ali
+T92 // timmy
+T122 // reli
+T144 // ethan
+T356 // grunt with ekans&zubat
+
+// route 25
+T184 // wayne
+// spinner guy: T94 (dan)
+T153 // kelsey
+T471 // flint
+// runner guy: T95 (chad)
+T125 // haley (order 132?)
+
+// way to vermillion
+T355 // grunt with machop&drowzee
+T146 // jeff
+
+// vermillion
+T427 // terry with ivysaur
+lm Dig
+um MegaPunch
+// left hand spinner: T220 (baily)
+// right hand spinner: T141 (dwayne)
+T423 // tucker
+T416 // surge
+
+// route 9
+T154 // alicia
+// hiker spinner: T465 (jeremy)
+T115 // conner
+
+// rock tunnel
+T168 // ashton
+T166 // winston
+T159 // martha (FUUUUUU)
+T190 // allen
+T193 // oliver
+T158 // sofia
+T189 // dudley
+// spinner in the dark~ T164 (cooper)
+T474 // dana
+
+// before celadon
+T264 // "gamer" rich
+
+// celadon game corner
+T357 // poster grunt raticate/zubat
+T368 // lift key grunt koffing/zubat
+T366 // left guard grunt sandshrew/ekans/sandslash
+rarecandy
+rarecandy
+rarecandy
+rarecandy
+evolve Blastoise
+T367 // right guard grunt ekans/sandshrew/arbok
+T348 // giovanni 1
+
+// lavender tower
+T430 -xspc 1 // rival with ivysaur
+// spinner on heal floor: T448 (Ruth)
+T447 // tammy
+T453 // jennifer
+T452 // emilia
+L30 Marowak
+T369 // rocket with zubat/zubat/golbat
+T370 // rocket with koffing/drowzee
+T371 // rocket with zubat/rattata/raticate/zubat
+
+// cycling road spinner hell
+// all these have view radius 1, so only the 2 you can actually hit sanely are here
+// top guy: T199 (Lao)
+// right guy: T249 (Koji)
+
+// kogas gym
+lm Surf
+lm Strength
+um WaterPulse
+um MegaKick
+// spinner at start: T292 (Kayden)
+T288 -xspc 1 // kirk
+// spinner at top: T295 (Edgar)
+T418 // Koga
+
+T419 -xspc 1 // Blaine
+
+// silph co.
+// spinner with arbok: T378
+lm Blizzard
+um Bite
+T433 -xspc 2 -xacc // rival with Venusaur
+T391 // grunt with cubone/drowzee/marowak
+T349 -xspc 1 // giovanni 2
+
+ranges
+
+setmain 2
+
+lm Thunder
+lm ShockWave
+um Detect
+um ThunderWave
+
+// celadon & saffron gyms
+T266 // tamia
+T267 // lori
+T417 // erika
+T420 // sabrina
+
+// viridian gym
+T324 // takashi
+T401 -use 1 -v 2 // warren
+T350 -use 1 -v 2 // giovanni
+
+// viridian rival
+T436 -order 1,2,6,3,4,5 -complex { | -shift 1 | -shift 2 -xatk 3 | -intimidate | -intimidate | } -v 2
+
+// elite4
+ranges
+T410 -xspc 2 -xacc -order 1,3,5,4,2 -v 2
+T411 -use 1 -order 1,2,5,3,4 -complex { | -shift 2 | | | -shift 1 } -v 2
+T412 -xspe 2 -xspc 4 -v 2 // really agility
+T413 -xacc -order 1,4,2,3,5 -v 2 -complex { -xspc 1 -xspe 2 | | -xspc 2 | | } // likewise
+T439 -order 1,3,6,2,4,5 -complex { | -shift 1 | -shift 2 -xatk 2 -xspe 2 | | -intimidate | -intimidate -deadswitch 1 } -v 2 // you guessed it

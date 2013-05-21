@@ -1,0 +1,134 @@
+setmain 1
+
+L2 Poochyena
+
+// rival
+T529 // may with lv5 treecko
+lm MudSlap
+
+// first route
+T318 // calvin
+
+// forest
+T616 -xatk 2 // lyle
+lm WaterGun
+T10 // grunt with poochyena
+// spinner : T621 james
+
+// gym
+T320 // josh
+T265 // roxanne
+lm RockTomb
+um Growl
+
+// route 116
+// spinner: T605 janice
+T631 // clark
+T16 // grunt with poochyena
+
+// dewford gym first pass
+// you kill lots of wilds before this
+T426 // laura
+rarecandy // this is fake, but you need 58 extra EXP before this fight from somewhere
+evolve Marshtomp
+lm MudShot
+um MudSlap
+
+// slateport grunts
+T20
+T21
+
+// may 2
+T530 -xspe 1 -xatk 2
+
+// mauville
+T656 // wally 1
+T649 // vivian
+T194 // shawn
+T267 -xspe 1 // wattson
+
+lm Strength
+um Tackle
+
+// northern route
+// lots of spinners
+T94 -xatk 1 // brooke
+
+// mtchimney
+T14 // grunt with zubat and poochyena
+T31 // matt 1
+T35 -xatk 1 // archie 1
+
+// lavaridge
+T268 -xatk 1 // flannery
+
+// dewford cleanup
+T266 // brawly
+
+// petalburg gym
+T71 -yspe 1 // randall
+T90 -ydef 1 // lori
+T74 // berke
+T269 -xdef 1 -xatk 3 // norman
+
+lm Surf
+um WaterGun
+
+// weather
+T26 -v 2 // carvanha
+T18 -v 2 // poochyena, carvanha
+T32 -v 2 // shelly 1
+
+// may
+stats
+T531 -xspe 1 -xatk 2 // may 3
+
+// mt.pyre
+T23 // zubats
+T24 // poochyena/carvanha
+T25// carvanhas
+
+// fortree gym
+// swampert would go here if you hit any spinner whatsoever
+T401 // jared
+rarecandy
+rarecandy
+rarecandy
+evolve Swampert
+T655 // kylee
+T270 // winona
+
+// aqua base
+T30 // matt 2
+
+// mossdeep gym
+T245 // samantha
+T271 -xspe 1 -sxp 2 // tate&liza
+
+lm Dive
+um RockTomb
+
+// underwater
+T33 // shelly 2
+lm Earthquake
+um MudShot
+T34 // archie 2
+
+setmain 2
+lm SolarBeam
+um BulkUp
+
+// final fights
+T272 -xatk 1 -v 2 // wallace
+T96 -v 2 // hope
+T97 -v 2 // shannon
+T100 -v 2 // julie
+T79 -v 2 // edgar
+T519 -xatk 1 -v 2 // wally 2
+
+// e4
+T261 -xatk 1 -v 2 // sidney
+T262 -xatk 2 -v 2 // phoebe
+T263 -xatk 1 -v 2 // glacia
+T264 -xatk 5 -v 2 // drake
+T335 -xspc 2 -xatk 2 -v 2 // steven

@@ -1,0 +1,167 @@
+setmain 1
+// rival
+T326
+
+// viridian forest
+T102//rick
+lm Ember
+T103//doug
+T532//charlie
+T104//bug catcher sammy
+
+// brocks gym
+T142// liam
+lm MetalClaw
+T414// brock
+
+// route 3
+T105 // colton
+T106 // greg
+evolve Charmeleon
+T107 // james
+// runner girl: T118 (robin)
+
+// mt.moon
+// spinner rocket: T354
+T351 // grunt with rattata & zubat
+T170 // miguel
+lm MegaKick
+lm MegaPunch
+um Scratch
+um Growl
+
+// cerulean
+T332 // terry with L18 bulbasaur (order 1423?)
+
+// nugget bridge
+T110 // cale
+T123 // ali
+T92 // timmy
+T122 // reli
+T144 // ethan
+T356 // grunt with ekans&zubat
+
+// route 25
+T184 // wayne
+// spinner guy: T94 (dan)
+T153 // kelsey
+T471 // flint
+// runner guy: T95 (chad)
+T125 // haley (order 132?)
+
+// way to vermillion
+T355 // grunt with machop&drowzee
+T146 // jeff
+
+// vermillion 1
+T426 // terry with wartortle
+lm Dig
+um MegaPunch
+
+// cerulean 2
+T415 // misty
+
+// route 9
+T154 // alicia
+// hiker spinner: T465 (jeremy)
+T115 // conner
+
+// rock tunnel
+T168 // ashton
+T166 // winston
+T159 // martha (FUUUUUU)
+T190 // allen
+T193 // oliver
+T158 // sofia
+T189 // dudley
+// spinner in the dark~ T164 (cooper)
+T474 // dana
+
+// before celadon
+T264 // "gamer" rich
+
+// celadon game corner
+//giveitem Charcoal
+T357 // poster grunt raticate/zubat
+T368 // lift key grunt koffing/zubat
+T366 // left guard grunt sandshrew/ekans/sandslash
+rarecandy
+rarecandy
+lm Flamethrower
+rarecandy
+rarecandy
+evolve Charizard
+lm WingAttack
+T367 // right guard grunt ekans/sandshrew/arbok
+T348 // giovanni 1
+
+// celadon & saffron gyms
+T266 // tamia
+T267 // lori
+T417 // erika
+
+// vermillion 2
+// left hand spinner: T220 (baily)
+// right hand spinner: T141 (dwayne)
+T423 // tucker
+T416// surge
+
+// lavender tower
+T429 // rival with ivysaur
+// spinner on heal floor: T448 (Ruth)
+T447 // tammy
+T453 // jennifer
+T452 // emilia
+L30 Marowak
+T369 // rocket with zubat/zubat/golbat
+T370 // rocket with koffing/drowzee
+T371 // rocket with zubat/rattata/raticate/zubat
+
+// cycling road spinner hell
+// all these have view radius 1, so only the 2 you can actually hit sanely are here
+// top guy: T199 (Lao)
+// right guy: T249 (Koji)
+
+// kogas gym
+lm Strength
+// spinner at start: T292 (Kayden)
+T288 // kirk
+// spinner at top: T295 (Edgar)
+T418 -xspc 1 // Koga
+
+T419 -xspc 3 // Blaine: check when roar procs
+lm FireBlast
+
+// silph co.
+// spinner with arbok: T378
+T432 -xspc 1 // rival with Venusaur
+T391 // grunt with cubone/drowzee/marowak
+T349 -xspc 1 // giovanni 2
+
+// saffron gym
+T420 // sabrina
+
+// viridian gym
+T324 // takashi
+T401 // warren
+T350 -xspc 1 // giovanni
+lm Earthquake
+
+// viridian rival
+T435 -xspc 4
+
+// elites
+rarecandy
+rarecandy
+rarecandy
+rarecandy
+lm BrickBreak
+lm DragonClaw
+
+setmain 2
+lm AerialAce
+T410 -xatk 6 -v 2
+T411 -v 2
+T412 -xspc 2
+T413 -xspc 3 -v 2
+T438 -v 2
