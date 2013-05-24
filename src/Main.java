@@ -34,6 +34,10 @@ public class Main {
 			Settings.game = Game.RUBY;
 		else if (gameName.equalsIgnoreCase("SAPPHIRE"))
 			Settings.game = Game.SAPPHIRE;
+		else if (gameName.equalsIgnoreCase("diamond"))
+			Settings.game = Game.DIAMOND;
+		else if (gameName.equalsIgnoreCase("pearl"))
+			Settings.game = Game.PEARL;
 		else
 			Settings.game = Game.EMERALD;
 

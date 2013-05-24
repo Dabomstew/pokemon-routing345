@@ -14,6 +14,7 @@ public class Trainer implements Battleable, Iterable<Pokemon> {
 	private int trainerNumber;
 	private int nameValue;
 	private boolean isFemale;
+	private int battleType;
 
 	@Override
 	public boolean equals(Object o) {
@@ -77,12 +78,14 @@ public class Trainer implements Battleable, Iterable<Pokemon> {
 		// trainersByName = new HashMap<String, Trainer>();
 
 		List<Trainer> trainerList = null;
-		if (Settings.game == Game.FIRERED || Settings.game == Game.LEAFGREEN)
-			trainerList = getData("trainer_data_frlg.txt");
+		if (Settings.game == Game.DIAMOND || Settings.game == Game.PEARL)
+			trainerList = getDataGen45("trainer_data_dp.txt");
+		else if (Settings.game == Game.FIRERED || Settings.game == Game.LEAFGREEN)
+			trainerList = getDataGen3("trainer_data_frlg.txt");
 		else if (Settings.game == Game.RUBY || Settings.game == Game.SAPPHIRE)
-			trainerList = getData("trainer_data_rs.txt");
+			trainerList = getDataGen3("trainer_data_rs.txt");
 		else
-			trainerList = getData("trainer_data_e.txt");
+			trainerList = getDataGen3("trainer_data_e.txt");
 
 		for (Trainer t : trainerList) {
 			allTrainers.put(new Integer(t.trainerNumber), t);
@@ -95,8 +98,147 @@ public class Trainer implements Battleable, Iterable<Pokemon> {
 		}
 	}
 
+	// reads trainer_data.txt for gen4/5 to get trainer data
+	private static List<Trainer> getDataGen45(String filename) {
+		ArrayList<Trainer> trainers = new ArrayList<Trainer>();
+		BufferedReader in;
+		try {
+			in = new BufferedReader(new InputStreamReader(System.class
+					.getResource("/resources/" + filename).openStream()));
+
+			Trainer t;
+			while (in.ready()) {
+				String text = in.readLine();
+				if (text.trim().isEmpty()) {
+					continue;
+				}
+				// Trainer line:
+				// num|name|trainerClass|pokeDataType|#pokes|battleType
+				t = new Trainer();
+				String[] parts = text.split("\\|");
+				t.trainerNumber = Integer.parseInt(parts[0]);
+				t.name = parts[1];
+				int trainerClass = Integer.parseInt(parts[2]);
+				t.isFemale = false; // TODO enum per trainer class
+				int pokeDataType = Integer.parseInt(parts[3]);
+				int numPokes = Integer.parseInt(parts[4]);
+				t.battleType = Integer.parseInt(parts[5]);
+				t.pokes = new ArrayList<Pokemon>();
+
+				// the next few lines are pokemon lines
+				for (int i = 0; i < numPokes; i++) {
+					String pokeText = in.readLine();
+					String[] pokeParts = pokeText.split("\\|");
+					int level = Integer.parseInt(pokeParts[0]);
+					Species s = Species.getSpeciesFromName(pokeParts[1]);
+					int AI = Integer.parseInt(pokeParts[2]);
+					// TODO: apply these overrides
+					int overrides = Integer.parseInt(pokeParts[3]);
+					int ivVal = 31 * AI / 255;
+					IVs ivs = new IVs(ivVal);
+					long PID = (calcPIDUpper(t.trainerNumber, AI, level,
+							s.getPokedexNum(), trainerClass) << 8)
+							+ (t.isFemale ? 0x78 : 0x88);
+					// moveset not specified
+					if (pokeDataType == 0) {
+						Pokemon pk = new Pokemon(s, level, ivs,
+								Nature.getNature(PID));
+						t.pokes.add(pk);
+					}
+					// moveset not specified with hold item
+					else if (pokeDataType == 2) {
+						Pokemon pk = new Pokemon(s, level, ivs,
+								Nature.getNature(PID));
+						Item item = Item
+								.getItem(Integer.parseInt(pokeParts[4]));
+						pk.setHoldItem(item);
+						t.pokes.add(pk);
+					}
+					// moveset specified
+					else if (pokeDataType == 1) {
+						int move1 = Integer.parseInt(pokeParts[4]);
+						int move2 = Integer.parseInt(pokeParts[5]);
+						int move3 = Integer.parseInt(pokeParts[6]);
+						int move4 = Integer.parseInt(pokeParts[7]);
+						Moveset m = new Moveset();
+						if (move1 != 0)
+							m.addMove(move1);
+						if (move2 != 0)
+							m.addMove(move2);
+						if (move3 != 0)
+							m.addMove(move3);
+						if (move4 != 0)
+							m.addMove(move4);
+						Pokemon pk = new Pokemon(s, level, m, ivs,
+								Nature.getNature(PID));
+						t.pokes.add(pk);
+					}
+					// hold item, and moveset specified
+					else if (pokeDataType == 3) {
+						Item item = Item
+								.getItem(Integer.parseInt(pokeParts[4]));
+						int move1 = Integer.parseInt(pokeParts[5]);
+						int move2 = Integer.parseInt(pokeParts[6]);
+						int move3 = Integer.parseInt(pokeParts[7]);
+						int move4 = Integer.parseInt(pokeParts[8]);
+						Moveset m = new Moveset();
+						if (move1 != 0)
+							m.addMove(move1);
+						if (move2 != 0)
+							m.addMove(move2);
+						if (move3 != 0)
+							m.addMove(move3);
+						if (move4 != 0)
+							m.addMove(move4);
+						Pokemon pk = new Pokemon(s, level, m, ivs,
+								Nature.getNature(PID));
+						pk.setHoldItem(item);
+						t.pokes.add(pk);
+					}
+				}
+				trainers.add(t);
+			}
+			in.close();
+			return trainers;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	private static int calcPIDUpper(int trainerNumber, int AI, int level,
+			int pokedexNum, int trainerClass) {
+		int nails = trainerNumber + AI + level + pokedexNum;
+		if (Settings.game.generationIndex() == 2) {
+			// 5th gen RNG
+			long constant = 0x5D588B656C078965L;
+			int curr = 0;
+			long working = nails;
+			while (curr < trainerClass) {
+				working = working * constant + 0x269EC3;
+				curr++;
+			}
+			return (int) (working >>> 48);
+		} else {
+			// 4th gen RNG
+			int constant = 0x41c64e6d;
+			int curr = 0;
+			int working = nails;
+			while (curr < trainerClass) {
+				working = working * constant + 0x6073;
+				curr++;
+			}
+			return working >>> 16;
+		}
+	}
+
 	// reads trainer_data_(frlg|rs|e).txt to get trainer data
-	private static List<Trainer> getData(String filename) {
+	private static List<Trainer> getDataGen3(String filename) {
 		ArrayList<Trainer> trainers = new ArrayList<Trainer>();
 		BufferedReader in;
 		try {
@@ -231,5 +373,10 @@ public class Trainer implements Battleable, Iterable<Pokemon> {
 			}
 		}
 		return battleOrder;
+	}
+
+	// for later
+	public int getBattleType() {
+		return battleType;
 	}
 }
