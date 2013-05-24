@@ -1,0 +1,37 @@
+// this is something approaching a HG route
+ranges
+
+L2 PIDGEY
+T3 // rival with totodile
+lm SmokeScreen
+
+// route:
+T47 // mikey
+
+// tower
+T51 // nico
+T43 // chow
+lm Ember
+T53 // jin
+T55 // neal
+T290 -order 1,3,2 // li
+
+T20 -v 2 // falkner
+lm QuickAttack
+evolve Quilava
+
+// spinners
+// T25 (russel)
+// T23 (larry)
+
+// well
+T101 // rattatas
+T13 // zubat, ekans
+T12 // rattata, zubats
+T486 // proton
+
+// gym
+T67 // benny
+T21 -order 1,3,2 -v 2 // bugsy
+
+ranges

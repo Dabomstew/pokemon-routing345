@@ -84,7 +84,7 @@ public class Trainer implements Battleable, Iterable<Pokemon> {
 			trainerList = getDataGen45("trainer_data_pt.txt");
 		else if (Settings.game == Game.HEARTGOLD
 				|| Settings.game == Game.SOULSILVER)
-			trainerList = getDataGen3("trainer_data_hgss.txt");
+			trainerList = getDataGen45("trainer_data_hgss.txt");
 		else if (Settings.game == Game.FIRERED
 				|| Settings.game == Game.LEAFGREEN)
 			trainerList = getDataGen3("trainer_data_frlg.txt");
