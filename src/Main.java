@@ -71,7 +71,6 @@ public class Main {
 			int spaIV = ini.get(iniSection, "spaIV", int.class);
 			int spdIV = ini.get(iniSection, "spdIV", int.class);
 			int speIV = ini.get(iniSection, "speIV", int.class);
-
 			Nature nature = Nature.getNature(ini.get(iniSection, "nature"));
 			IVs ivs = new IVs(hpIV, atkIV, defIV, spaIV, spdIV, speIV);
 			int hpEV = ini.get(iniSection, "hpEV", int.class);

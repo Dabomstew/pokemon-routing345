@@ -38,9 +38,9 @@ public class Nature {
 	public static Nature getNature(String s) {
 		for (int i = 0; i < natureList.length; i++) {
 			if (natureList[i].equalsIgnoreCase(s))
-				return getNature(i);
+				return natures[i];
 		}
-		return getNature(0);
+		return natures[0];
 	}
 
 	public String toString() {

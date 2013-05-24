@@ -75,6 +75,7 @@ public class Learnset {
 
 	static {
 		// cheat to get the right movedata for the right learnsets
+		Game g = Settings.game;
 		Settings.game = Game.EMERALD;
 		allLearnsetsRSE = getData("moveset_rse.txt");
 		allLearnsetsFRLG = getData("moveset_frlg.txt");
@@ -85,6 +86,7 @@ public class Learnset {
 		Settings.game = Game.BLACK2;
 		allLearnsetsBW1 = getData("moveset_bw1.txt");
 		allLearnsetsBW2 = getData("moveset_bw2.txt");
+		Settings.game = g;
 	}
 
 	private static Learnset[] getData(String filename) {
