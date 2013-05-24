@@ -9,6 +9,11 @@ public class Learnset {
 
 	private static final Learnset[] allLearnsetsRSE;
 	private static final Learnset[] allLearnsetsFRLG;
+	private static final Learnset[] allLearnsetsDP;
+	private static final Learnset[] allLearnsetsPT;
+	private static final Learnset[] allLearnsetsHGSS;
+	private static final Learnset[] allLearnsetsBW1;
+	private static final Learnset[] allLearnsetsBW2;
 
 	public Learnset(LevelMove[] new_levelMoves) {
 		if (new_levelMoves == null) {
@@ -26,22 +31,60 @@ public class Learnset {
 
 	// get species #i's learnset,
 	public static Learnset getLearnset(int i, Game game) {
-		if (game == Game.RUBY || game == Game.SAPPHIRE || game == Game.EMERALD) {
-			if (i < 0 || i >= allLearnsetsRSE.length)
+		Learnset[] chosenLearnset = null;
+		switch (game) {
+		case RUBY:
+		case SAPPHIRE:
+		case EMERALD:
+			chosenLearnset = allLearnsetsRSE;
+			break;
+		case FIRERED:
+		case LEAFGREEN:
+			chosenLearnset = allLearnsetsFRLG;
+			break;
+		case DIAMOND:
+		case PEARL:
+			chosenLearnset = allLearnsetsDP;
+			break;
+		case PLATINUM:
+			chosenLearnset = allLearnsetsPT;
+			break;
+		case HEARTGOLD:
+		case SOULSILVER:
+			chosenLearnset = allLearnsetsHGSS;
+			break;
+		case BLACK:
+		case WHITE:
+			chosenLearnset = allLearnsetsBW1;
+			break;
+		case BLACK2:
+		case WHITE2:
+			chosenLearnset = allLearnsetsBW2;
+			break;
+		}
+		if(chosenLearnset==null) {
+			return null;
+		}
+		else {
+			if (i < 0 || i >= chosenLearnset.length)
 				return null;
 			else
-				return allLearnsetsRSE[i];
-		} else {
-			if (i < 0 || i >= allLearnsetsFRLG.length)
-				return null;
-			else
-				return allLearnsetsFRLG[i];
+				return chosenLearnset[i];
 		}
 	}
 
 	static {
+		// cheat to get the right movedata for the right learnsets
+		Settings.game = Game.EMERALD;
 		allLearnsetsRSE = getData("moveset_rse.txt");
 		allLearnsetsFRLG = getData("moveset_frlg.txt");
+		Settings.game = Game.HEARTGOLD;
+		allLearnsetsDP = getData("moveset_dp.txt");
+		allLearnsetsPT = getData("moveset_pt.txt");
+		allLearnsetsHGSS = getData("moveset_hgss.txt");
+		Settings.game = Game.BLACK2;
+		allLearnsetsBW1 = getData("moveset_bw1.txt");
+		allLearnsetsBW2 = getData("moveset_bw2.txt");
 	}
 
 	private static Learnset[] getData(String filename) {
