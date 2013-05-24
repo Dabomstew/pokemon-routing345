@@ -73,11 +73,11 @@ public class Species {
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					System.class.getResource("/resources/pokemon.txt")
 							.openStream()));
-			for (int i = 0; i < allSpecies.length; i++) {
+			for (int i = 1; i < allSpecies.length; i++) {
 				// s = new Species();
 				String s_name = in.readLine();
 				ExpCurve s_curve = ExpCurve.valueOf(in.readLine());
-				ts = in.readLine().split("|");
+				ts = in.readLine().split("\\|");
 				Type s_type1, s_type2;
 				if (ts.length == 0) {
 					s_type1 = Type.NONE;
@@ -105,17 +105,17 @@ public class Species {
 				String[] s_abilities2 = new String[3];
 				int[] s_numAbilities = new int[3];
 				
-				String[] abilsg3 = in.readLine().split("|");
+				String[] abilsg3 = in.readLine().split("\\|", 2);
 				s_abilities1[0] = abilsg3[0];
 				s_abilities2[0] = abilsg3.length > 1 ? abilsg3[1] : "";
 				s_numAbilities[0] = abilsg3.length;
 				
-				String[] abilsg4 = in.readLine().split("|");
+				String[] abilsg4 = in.readLine().split("\\|",2);
 				s_abilities1[1] = abilsg4[0];
-				s_abilities2[1] = abilsg4[1];
-				s_numAbilities[1] = abilsg4[1].isEmpty() ? 1 : 2;
+				s_abilities2[1] = abilsg4.length > 1 ? abilsg4[1] : "";
+				s_numAbilities[1] = (abilsg4.length == 1 || abilsg4[1].isEmpty()) ? 1 : 2;
 				
-				String[] abilsg5 = in.readLine().split("|");
+				String[] abilsg5 = in.readLine().split("\\|", 3);
 				s_abilities1[2] = abilsg5[0];
 				s_abilities2[2] = abilsg5[1];
 				String s_dwAbility = abilsg5[2];
@@ -153,7 +153,7 @@ public class Species {
 	}
 
 	private static int[] toIntArray(String line) {
-		String[] tokens = line.split("|");
+		String[] tokens = line.split("\\|");
 		int[] iarr = new int[tokens.length];
 		for (int i = 0; i < tokens.length; i++) {
 			iarr[i] = Integer.parseInt(tokens[i]);
