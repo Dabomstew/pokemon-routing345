@@ -38,6 +38,12 @@ public class Main {
 			Settings.game = Game.DIAMOND;
 		else if (gameName.equalsIgnoreCase("pearl"))
 			Settings.game = Game.PEARL;
+		else if (gameName.equalsIgnoreCase("platinum"))
+			Settings.game = Game.PLATINUM;
+		else if (gameName.equalsIgnoreCase("heartgold"))
+			Settings.game = Game.HEARTGOLD;
+		else if (gameName.equalsIgnoreCase("soulsilver"))
+			Settings.game = Game.SOULSILVER;
 		else
 			Settings.game = Game.EMERALD;
 

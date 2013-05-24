@@ -1,3 +1,6 @@
 ranges
 T1 -v 2
+T3 -v 2
+T2 -v 2
+T246 -v 2
 ranges
