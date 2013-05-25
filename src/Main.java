@@ -48,6 +48,8 @@ public class Main {
 			Settings.game = Game.EMERALD;
 		
 		Settings.damageCalc = DamageCalculator.dcFor(Settings.game);
+		
+		Item.initItems();
 
 		Trainer.initTrainers();
 

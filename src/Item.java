@@ -13,13 +13,14 @@ public class Item {
         name = n_name;
     }
     
-    static {
-        allItems = new Item[Constants.itemNames.length];
+    public static void initItems() {
+    	int index = Settings.game.generationIndex();
+        allItems = new Item[Constants.itemNames[index].length];
         allItemsHashMap = new HashMap<String,Item>();
         
         Item item;
         for(int i = 0; i < allItems.length; i++) {
-            String name = Constants.itemNames[i];
+            String name = Constants.itemNames[index][i];
             item = new Item(i, name);
             allItems[i] = item;
             if(!name.isEmpty()) {

@@ -1,14 +1,14 @@
 MAIN TODOS:
 
-Actual parsing for most of gen4/5 trainer data, and in Main.java
+Actual parsing for gen5 trainer data, and in Main.java
 Gen5 EXP formula
-Gen4/5 Damage Calculation (with new abilities, formula etc)
+Gen5 Damage Calculation (with new abilities, formula etc)
 Double/Triple/Rotation battle "support"
 Gen5 Trainer Data
-Gen4/5 Movesets
 Gen4/5 proper gender calcs
 Gen4/5 Ability/Gender override data support
 Verify gen4/5 abilities and genders are being calculated correctly in special cases
+complete gen4 damage calc
 
 Later:
 Documentation
