@@ -18,6 +18,7 @@ T290 -order 1,3,2 // li
 
 T20 -v 2 // falkner
 lm QuickAttack
+um SmokeScreen
 evolve Quilava
 
 // spinners
@@ -32,6 +33,38 @@ T486 // proton
 
 // gym
 T67 // benny
-T21 -order 1,3,2 -v 2 // bugsy
+T21 -order 1,3,2 // bugsy
 
+T269 -order 1,3,2 -v 2 // rival
+lm FlameWheel
+um Tackle
+
+giveitem Charcoal
+lm FireBlast
+um Leer
+
+// gym
+T71 // cathy
+T22 // carrie
+T30 // whitney
+
+// route up
+T74 -order 1,3,2 // ivan
+// spinner T7 -order 1,2,4,3  irwin
+// spinner T388 walt
+T78 // arnie
+// tag: T679 & T680
+// temp
+T679 -sxp 2
+T680 -sxp 2
+
+// tower
+T270 -order 1,4,3,2 -v 2 // rival
+
+// gym
+T494 // georgina
+T89 // grace
+T493 // edith
+T46 // martha
+T31 -order 1,3,2,4 -v 2 // morty
 ranges

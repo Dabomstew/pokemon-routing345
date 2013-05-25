@@ -46,6 +46,8 @@ public class Main {
 			Settings.game = Game.SOULSILVER;
 		else
 			Settings.game = Game.EMERALD;
+		
+		Settings.damageCalc = DamageCalculator.dcFor(Settings.game);
 
 		Trainer.initTrainers();
 
