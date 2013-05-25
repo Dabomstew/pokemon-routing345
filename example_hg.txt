@@ -33,7 +33,7 @@ T486 // proton
 
 // gym
 T67 // benny
-T21 -order 1,3,2 // bugsy
+T21 -order 1,3,2 -v 2 // bugsy
 
 T269 -order 1,3,2 -v 2 // rival
 lm FlameWheel
@@ -46,7 +46,7 @@ um Leer
 // gym
 T71 // cathy
 T22 // carrie
-T30 // whitney
+T30 -v 2 // whitney
 
 // route up
 T74 -order 1,3,2 // ivan

@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import org.ini4j.jdk14.edu.emory.mathcs.backport.java.util.Arrays;
+
 //a trainer has a class name and some pokemon, corresponding to some location in memory
 public class Trainer implements Battleable, Iterable<Pokemon> {
 	private String name;
@@ -125,7 +127,8 @@ public class Trainer implements Battleable, Iterable<Pokemon> {
 				t.trainerNumber = Integer.parseInt(parts[0]);
 				t.name = parts[1];
 				int trainerClass = Integer.parseInt(parts[2]);
-				t.isFemale = false; // TODO enum per trainer class
+				t.isFemale = determineIfFemale(trainerClass); // TODO enum per
+																// trainer class
 				int pokeDataType = Integer.parseInt(parts[3]);
 				int numPokes = Integer.parseInt(parts[4]);
 				t.battleType = Integer.parseInt(parts[5]);
@@ -145,20 +148,17 @@ public class Trainer implements Battleable, Iterable<Pokemon> {
 					long PID = (calcPIDUpper(t.trainerNumber, AI, level,
 							s.getPokedexNum(), trainerClass) << 8)
 							+ (t.isFemale ? 0x78 : 0x88);
+					Pokemon pk = null;
 					// moveset not specified
 					if (pokeDataType == 0) {
-						Pokemon pk = new Pokemon(s, level, ivs,
-								Nature.getNature(PID));
-						t.pokes.add(pk);
+						pk = new Pokemon(s, level, ivs, Nature.getNature(PID));
 					}
 					// moveset not specified with hold item
 					else if (pokeDataType == 2) {
-						Pokemon pk = new Pokemon(s, level, ivs,
-								Nature.getNature(PID));
+						pk = new Pokemon(s, level, ivs, Nature.getNature(PID));
 						Item item = Item
 								.getItem(Integer.parseInt(pokeParts[4]));
 						pk.setHoldItem(item);
-						t.pokes.add(pk);
 					}
 					// moveset specified
 					else if (pokeDataType == 1) {
@@ -175,9 +175,8 @@ public class Trainer implements Battleable, Iterable<Pokemon> {
 							m.addMove(move3);
 						if (move4 != 0)
 							m.addMove(move4);
-						Pokemon pk = new Pokemon(s, level, m, ivs,
+						pk = new Pokemon(s, level, m, ivs,
 								Nature.getNature(PID));
-						t.pokes.add(pk);
 					}
 					// hold item, and moveset specified
 					else if (pokeDataType == 3) {
@@ -196,10 +195,20 @@ public class Trainer implements Battleable, Iterable<Pokemon> {
 							m.addMove(move3);
 						if (move4 != 0)
 							m.addMove(move4);
-						Pokemon pk = new Pokemon(s, level, m, ivs,
+						pk = new Pokemon(s, level, m, ivs,
 								Nature.getNature(PID));
 						pk.setHoldItem(item);
-						t.pokes.add(pk);
+					}
+					t.pokes.add(pk);
+					// TODO more cases / actually differentiate between games
+					// overrides & 48 == 48 for DW ability in gen5?
+					// overrides & 1 == 1 for force male
+					// overrides & 2 == 2 for force female
+					// also find out what, if anything, this does in DPPt
+					if ((overrides & 16) == 16) {
+						pk.setAbility(pk.getSpecies().getAbility1());
+					} else if ((overrides & 32) == 32) {
+						pk.setAbility(pk.getSpecies().getAbility2());
 					}
 				}
 				trainers.add(t);
@@ -215,6 +224,55 @@ public class Trainer implements Battleable, Iterable<Pokemon> {
 		}
 
 		return null;
+	}
+
+	private static boolean determineIfFemale(int trainerClass) {
+		// questionable: 23 (Young Couple), 31 (Double Team), 47 (Sis & Bro), 70
+		// (Belle & Pa), 82 (Interviewers)
+		Integer[] femaleClassesDP = new Integer[] { 1, 3, 5, 7, 8, 10, 13, 17,
+				18, 21, 22, 25, 26, 30, 33, 35, 40, 43, 45, 50, 54, 56, 61, 66,
+				69, 72, 74, 76, 77, 78, 80, 84, 85, 87, 89, 90, 92, 94, 96, };
+		Integer[] femaleClassesPt = new Integer[] { 1, 3, 5, 7, 8, 10, 13, 17,
+				18, 21, 22, 25, 26, 30, 33, 35, 40, 43, 45, 50, 54, 56, 61, 66,
+				69, 72, 74, 76, 77, 78, 80, 84, 85, 87, 89, 90, 92, 94, 96, 98,
+				99, 101 };
+		// questionable: 122 (Young Couple), 121 (Double Team)
+		// also have to find the female Grunt class
+		Integer[] femaleClassesHGSS = new Integer[] { 3, 5, 8, 21, 25, 36, 43,
+				47, 56, 70, 74, 76, 77, 82, 88, 90, 92, 94, 99, 101, 103, 105,
+				106, 107, 114 };
+		Integer[] femaleClassesBW1 = new Integer[] {};
+		Integer[] femaleClassesBW2 = new Integer[] {};
+
+		Integer[] femaleClasses = null;
+		switch (Settings.game) {
+		case DIAMOND:
+		case PEARL:
+			femaleClasses = femaleClassesDP;
+			break;
+		case PLATINUM:
+			femaleClasses = femaleClassesPt;
+			break;
+		case HEARTGOLD:
+		case SOULSILVER:
+			femaleClasses = femaleClassesHGSS;
+			break;
+		case BLACK:
+		case WHITE:
+			femaleClasses = femaleClassesBW1;
+			break;
+		case BLACK2:
+		case WHITE2:
+			femaleClasses = femaleClassesBW2;
+			break;
+		}
+
+		if (femaleClasses == null) {
+			// shouldn't ever happen
+			return false;
+		}
+
+		return Arrays.asList(femaleClasses).contains(trainerClass);
 	}
 
 	private static int calcPIDUpper(int trainerNumber, int AI, int level,
