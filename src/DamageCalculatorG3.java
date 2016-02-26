@@ -87,8 +87,7 @@ public class DamageCalculatorG3 extends DamageCalculator {
             effective_atk = (!crit || atkMod.getSpcAtkStage() >= 0) ? atkMod.modSpcAtk(atk_spc) : atk_spc;
             effective_def = (!crit || defMod.getSpcDefStage() <= 0) ? defMod.modSpcDef(def_spc) : def_spc;
         }
-        int damage = (int) ((attacker.getLevel() * 0.4) + 2)
-                * (effective_atk) * power / 50 / (effective_def);
+        int damage = (attacker.getLevel()*2/5 + 2)*effective_atk*power/50/effective_def;
         
         if(attack.isPhysicalMove()) {
             damage = Math.max(damage, 1);
