@@ -103,7 +103,7 @@ T30 // matt 2
 
 // mossdeep gym
 T245 // samantha
-T271 -xspe 1 -sxp 2 // tate&liza
+T271 -xspe 1 -sxp 2 -v 2 // tate&liza
 
 lm Dive
 um RockTomb

@@ -16,6 +16,7 @@ public class Trainer implements Battleable, Iterable<Pokemon> {
     private int trainerNumber;
     private int nameValue;
     private boolean isFemale;
+    private boolean isDouble;
     private int battleType;
 
     @Override
@@ -309,9 +310,10 @@ public class Trainer implements Battleable, Iterable<Pokemon> {
                 t.trainerNumber = Integer.parseInt(parts[0]);
                 t.name = parts[1];
                 t.isFemale = Integer.parseInt(parts[2]) == 1;
-                int pokeDataType = Integer.parseInt(parts[3]);
-                int numPokes = Integer.parseInt(parts[4]);
-                t.nameValue = Integer.parseInt(parts[5]);
+                t.isDouble = Integer.parseInt(parts[3]) == 1;
+                int pokeDataType = Integer.parseInt(parts[4]);
+                int numPokes = Integer.parseInt(parts[5]);
+                t.nameValue = Integer.parseInt(parts[6]);
                 t.pokes = new ArrayList<Pokemon>();
 
                 // the next few lines are pokemon lines
@@ -326,13 +328,9 @@ public class Trainer implements Battleable, Iterable<Pokemon> {
                     int ivVal = 31 * AI / 255;
                     IVs ivs = new IVs(ivVal);
 
-                    // dirty hardcode
-                    if (parts[1].equals("TATE&LIZA")) {
-                        incrementedNameValue = 0;
-                    }
                     incrementedNameValue += t.nameValue;
                     incrementedNameValue += s.getNameValue();
-                    long PID = (incrementedNameValue << 8) + (t.isFemale ? 0x78 : 0x88);
+                    long PID = (incrementedNameValue << 8) + (t.isDouble ? 0x80 : (t.isFemale ? 0x78 : 0x88));
                     // moveset not specified
                     if (pokeDataType == 0) {
                         Pokemon pk = new Pokemon(s, level, ivs, Nature.getNature(PID));
